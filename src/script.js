@@ -59,6 +59,10 @@ function initiateDropdown(selectElement, options) {
       });
 
     }
+    function loadBrands() { //function to load brands
+        
+
+    }
     function loadModels() { //function to load models
         const vehicleType = document.getElementById('vehicleType').value;
         const brandCode = document.getElementById('brands').value;
@@ -92,6 +96,7 @@ function initiateDropdown(selectElement, options) {
             console.error('error : ',error);
             alert('Failed to load models. Please try again.');
         });}
+
         function loadYears() {//function to load years
             const vehicleType = document.getElementById('vehicleType').value;
             const brandCode = document.getElementById('brands').value;
@@ -112,4 +117,20 @@ function initiateDropdown(selectElement, options) {
     // Construct the years URL based on the vehicle type, brand code, and model code
    const yearsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos`;
    fetch(yearsUrl)//fetch years data from  API
+.then(response=>{
+    if(!response.){
+        throw new Error('Network error');
+
+}return response.json();
+})  
+.then(data=>{
+    //initiate the years dropdown 
+    initiateDropdown(document.getElementById('years'), data.anos);
+})
+.catch(error => {
+    console.error('Error fetching years:', error);
+    alert('Failed to fetch years. Please try again.');
+});
+}
+
 
