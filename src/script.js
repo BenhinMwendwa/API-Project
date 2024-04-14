@@ -91,4 +91,8 @@ function initiateDropdown(selectElement, options) {
         .catch(error => {
             console.error('error : ',error);
             alert('Failed to load models. Please try again.');
-        });
+        });}
+        function loadYears() {//function to load years
+            const vehicleType = document.getElementById('vehicleType').value;
+            const brandCode = document.getElementById('brands').value;
+            const modelCode = document.getElementById('models').value;
