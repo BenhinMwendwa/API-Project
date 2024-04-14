@@ -74,8 +74,26 @@ function initiateDropdown(selectElement, options) {
         return;
     }
     const brandsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas`;
-
-    }
+    fetch(brandsUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Network error`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        populateDropdown(document.getElementById('brands'), data);
+    })
+    .catch(error => {
+        console.error('Error fetching brands:', error);
+        alert('Failed to fetch brands. Please try again.');
+    });
+}
+// Load brands when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadBrands();
+});
+    
     function loadModels() { //function to load models
         const vehicleType = document.getElementById('vehicleType').value;
         const brandCode = document.getElementById('brands').value;
