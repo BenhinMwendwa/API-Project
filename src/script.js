@@ -63,7 +63,7 @@ function initiateDropdown(selectElement, options) {
         const vehicleType = document.getElementById('vehicleType').value;
         const brandCode = document.getElementById('brands').value;
        //use if  else to define correct API for vehicles
-        let apiVehicleType = '';
+        let apiVehicleType = ''; // Initialize empty string
         if (vehicleType === 'car') {
             apiVehicleType = 'carros';
         } else if (vehicleType === 'motos') {
@@ -96,3 +96,17 @@ function initiateDropdown(selectElement, options) {
             const vehicleType = document.getElementById('vehicleType').value;
             const brandCode = document.getElementById('brands').value;
             const modelCode = document.getElementById('models').value;
+
+            // Define the correct API vehicle for URL
+    let apiVehicleType = ''; // initialize empty string
+    if (vehicleType === 'car') {
+        apiVehicleType = 'carros';
+    } else if (vehicleType === 'motos') {
+        apiVehicleType = 'motos';
+    } else if (vehicleType === 'caminhoes') {
+        apiVehicleType = 'caminhoes';
+    } else {
+        console.error('Unknown vehicle type:', vehicleType);
+        return;
+    }
+    
