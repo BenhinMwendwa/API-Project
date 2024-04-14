@@ -28,4 +28,23 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
             }
             return response.json();
         })
+     
         .then(data => {
+                // create  content in html to display vehicle information when its clicked
+                const vehicleInfo = `
+                    <p><strong>Brand:</strong> ${data.Marca}</p>
+                    <p><strong>Model:</strong> ${data.Modelo}</p>
+                    <p><strong>Model year:</strong> ${data.AnoModelo}</p>
+                    <p><strong>Fuel Type:</strong> ${data.Combustivel}</p>
+                    <p><strong>Value:</strong> ${data.Valor}</p>
+                `;
+    
+                // put the string information into VehicleInfo
+                document.getElementById('vehicleInfo').innerHTML = vehicleInfo;
+            })
+            .catch(error => {
+                console.error('Error fetching vehicle information:', error);
+                alert('Failed to fetch vehicle information. Please try again.');
+            });
+    }
+    
