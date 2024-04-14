@@ -37,6 +37,9 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
                     <p><strong>Model year:</strong> ${data.AnoModelo}</p>
                     <p><strong>Fuel Type:</strong> ${data.Combustivel}</p>
                     <p><strong>Value:</strong> ${data.Valor}</p>
+                    <p><strong>Fipe Code:</strong> ${data.CodigoFipe}</p>
+                    <p><strong>Fuel Type Abbreviation:</strong> ${data.SiglaCombustivel}</p>
+                    <p><strong>Reference Month:</strong> ${data.MesReferencia}</p>
                 `;
     
                 // put the string information into VehicleInfo
