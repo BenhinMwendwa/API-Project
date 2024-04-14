@@ -111,4 +111,5 @@ function initiateDropdown(selectElement, options) {
     }
     // Construct the years URL based on the vehicle type, brand code, and model code
    const yearsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos`;
+   fetch(yearsUrl)//fetch years data from  API
 
