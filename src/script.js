@@ -47,7 +47,18 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
                 alert('Failed to fetch vehicle information. Please try again.');
             });
     }
-    //Function to initiate a dropdown element with options
+    //function to initiate a dropdown element with options
 function initiateDropdown(selectElement, options) {
     selectElement.innerHTML = ''; //clear existing options
-    
+      // Loop through each option in the 'options' array
+      options.forEach(option => {
+        const optionElement = document.createElement('option');//create element
+        optionElement.value = option.codigo;//set value
+        optionElement.textContent = option.nome; //set name
+        selectElement.appendChild(optionElement);
+      });
+
+    }
+    function loadModels() { //function to load models
+        const vehicleType = document.getElementById('vehicleType').value;
+        const brandCode = document.getElementById('brands').value;
