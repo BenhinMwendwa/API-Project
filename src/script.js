@@ -17,14 +17,14 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
         console.error('Unknown :', vehicleType);
         return;
     }
-    const url = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos/${yearCode}`;
+    const apiurl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos/${yearCode}`;
 
 
     // Fetch vehicle information 
-    fetch(apiUrl)
+    fetch(apiurl)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Network Error');
             }
             return response.json();
         })
@@ -40,7 +40,7 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
                 `;
     
                 // put the string information into VehicleInfo
-                document.getElementById('vehicleInfo').innerHTML = vehicleInfo;
+                document.getElementById('VehicleInfo').innerHTML = vehicleInfo;
             })
             .catch(error => {
                 console.error('Error fetching vehicle information:', error);
@@ -48,7 +48,7 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
             });
     }
     //function to initiate a dropdown element with options
-function initiateDropdown(selectElement, options) {
+function populateDropdown(selectElement, options) {
     selectElement.innerHTML = ''; //clear existing options
       // Loop through each option in the 'options' array
       options.forEach(option => {
@@ -61,6 +61,7 @@ function initiateDropdown(selectElement, options) {
     }
     function loadBrands() { //function to load brands
         const vehicleType = document.getElementById('vehicleType').value;
+
     let apiVehicleType = ''; // initialize to empty string
     //use if else to check the values then assign them to the api values if they meet the condition
     if (vehicleType === 'car') {
@@ -90,9 +91,7 @@ function initiateDropdown(selectElement, options) {
     });
 }
 // Load brands when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    loadBrands();
-});
+
     
     function loadModels() { //function to load models
         const vehicleType = document.getElementById('vehicleType').value;
@@ -121,47 +120,77 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             //initiate the models dropdown 
-            initiateDropdown(document.getElementById('models'), data.modelos);
+            populateDropdown(document.getElementById('models'), data.modelos);
         })
         .catch(error => {
             console.error('error : ',error);
             alert('Failed to load models. Please try again.');
         });}
 
-        function loadYears() {//function to load years
+        function loadYears() {
             const vehicleType = document.getElementById('vehicleType').value;
             const brandCode = document.getElementById('brands').value;
             const modelCode = document.getElementById('models').value;
+        
+            // Define the correct API vehicle type string for the URL
+            let apiVehicleType = '';
+            if (vehicleType === 'car') {
+                apiVehicleType = 'carros';
+            } else if (vehicleType === 'motos') {
+                apiVehicleType = 'motos';
+            } else if (vehicleType === 'caminhoes') {
+                apiVehicleType = 'caminhoes';
+            } else {
+                console.error('Unknown vehicle type:', vehicleType);
+                return;
+            }
+        
+            // Construct the years URL based on the vehicle type, brand code, and model code
+           const yearsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos`;
+        
+            // Fetch years data from the API
+            fetch(yearsUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network error');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Populate the years dropdown with fetched data
+                    populateDropdown(document.getElementById('years'), data);
+                })
+                .catch(error => {
+                    console.error('Error fetching years:', error);
+                    alert('Failed to fetch years. Please try again.');
+                });
+        }
+        
 
-            // Define the correct API vehicle for URL
-    let apiVehicleType = ''; // initialize empty string
-    if (vehicleType === 'car') {
-        apiVehicleType = 'carros';
-    } else if (vehicleType === 'motos') {
-        apiVehicleType = 'motos';
-    } else if (vehicleType === 'caminhoes') {
-        apiVehicleType = 'caminhoes';
-    } else {
-        console.error('Unknown vehicle type:', vehicleType);
-        return;
-    }
-    // Construct the years URL based on the vehicle type, brand code, and model code
-   const yearsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos`;
-   fetch(yearsUrl)//fetch years data from  API
-.then(response=>{
-    if(!response.){
-        throw new Error('Network error');
 
-}return response.json();
-})  
-.then(data=>{
-    //initiate the years dropdown 
-    initiateDropdown(document.getElementById('years'), data.anos);
-})
-.catch(error => {
-    console.error('Error fetching years:', error);
-    alert('Failed to fetch years. Please try again.');
+document.addEventListener('DOMContentLoaded', () => {
+    loadBrands();
 });
-}
+document.getElementById('vehicleType').addEventListener('change', () => {
+    loadBrands(); // Reload brands when vehicle type changes
+});
+
+// Event listener for brand selection change
+document.getElementById('brands').addEventListener('change', () => {
+    loadModels(); // Load models when brand selection changes
+});
+
+// Event listener for model selection change
+document.getElementById('models').addEventListener('change', () => {
+    loadYears(); // Load years when model selection changes
+});
+
+// Event listener for button click to fetch vehicle information
+document.querySelector('button').addEventListener('click', () => {
+    fetchVehicleInfo(); // Fetch and display vehicle information on button click
+});
+document.getElementsByTagName('VehicleInfo').addEventListener('change', () => {
+    fetchVehicleInfo() // Load years when model selection changes
+});
 
 
