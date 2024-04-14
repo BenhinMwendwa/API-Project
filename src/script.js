@@ -74,3 +74,5 @@ function initiateDropdown(selectElement, options) {
             console.error('Unknown vehicle type:', vehicleType);
             return;
         }
+        
+        const modelsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos`;
