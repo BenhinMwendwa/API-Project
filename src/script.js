@@ -167,7 +167,7 @@ function populateDropdown(selectElement, options) {
         }
         
 
-
+//load brand when page loads 
 document.addEventListener('DOMContentLoaded', () => {
     loadBrands();
 });
@@ -185,4 +185,4 @@ document.getElementById('models').addEventListener('change', () => {
     loadYears(); // Load years when model selection changes
 });
 
- 
+
