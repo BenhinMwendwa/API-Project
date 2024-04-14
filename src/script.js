@@ -60,7 +60,20 @@ function initiateDropdown(selectElement, options) {
 
     }
     function loadBrands() { //function to load brands
-        
+        const vehicleType = document.getElementById('vehicleType').value;
+    let apiVehicleType = ''; // initialize to empty string
+    //use if else to check the values then assign them to the api values if they meet the condition
+    if (vehicleType === 'car') {
+        apiVehicleType = 'carros';
+    } else if (vehicleType === 'motos') {
+        apiVehicleType = 'motos';
+    } else if (vehicleType === 'caminhoes') {
+        apiVehicleType = 'caminhoes';
+    } else {
+        console.error('Unknown :', vehicleType);
+        return;
+    }
+    const brandsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas`;
 
     }
     function loadModels() { //function to load models
