@@ -62,3 +62,15 @@ function initiateDropdown(selectElement, options) {
     function loadModels() { //function to load models
         const vehicleType = document.getElementById('vehicleType').value;
         const brandCode = document.getElementById('brands').value;
+       //use if  else to define correct API for vehicles
+        let apiVehicleType = '';
+        if (vehicleType === 'car') {
+            apiVehicleType = 'carros';
+        } else if (vehicleType === 'motos') {
+            apiVehicleType = 'motos';
+        } else if (vehicleType === 'caminhoes') {
+            apiVehicleType = 'caminhoes';
+        } else {
+            console.error('Unknown vehicle type:', vehicleType);
+            return;
+        }
