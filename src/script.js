@@ -18,4 +18,14 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
         return;
     }
     const url = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos/${yearCode}`;
-    
+
+
+    // Fetch vehicle information 
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
