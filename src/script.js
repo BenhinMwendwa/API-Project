@@ -109,4 +109,6 @@ function initiateDropdown(selectElement, options) {
         console.error('Unknown vehicle type:', vehicleType);
         return;
     }
-    
+    // Construct the years URL based on the vehicle type, brand code, and model code
+   const yearsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos/${modelCode}/anos`;
+
