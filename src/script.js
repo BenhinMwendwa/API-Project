@@ -74,5 +74,21 @@ function initiateDropdown(selectElement, options) {
             console.error('Unknown vehicle type:', vehicleType);
             return;
         }
-        
+
         const modelsUrl = `https://parallelum.com.br/fipe/api/v1/${apiVehicleType}/marcas/${brandCode}/modelos`;
+        fetch(modelsUrl)//fetch models data from  API
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network error');
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            //initiate the models dropdown 
+            initiateDropdown(document.getElementById('models'), data.modelos);
+        })
+        .catch(error => {
+            console.error('error : ',error);
+            alert('Failed to load models. Please try again.');
+        });
