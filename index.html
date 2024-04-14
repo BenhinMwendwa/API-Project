@@ -3,36 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle API</title>
-    <link rel="stylesheet" href="./CSS/style.css">
+    <title>Car API</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script src="script.js"></script>
-    <div class = "container">
-        <h1>Vehicles </h1>
-        <div>
-            <label for="VehicleType"> Select Vehicle Type</label>
-            <select id="vehicleType">
-                <option value="car">Cars</option>
-                <option value="motos">Motocycles</option>
-                <option value="caminhoes">Trucks</option>
-            </select>
+<div class = "container">
+    <h1>Vehicles </h1>
+    <div>
+        <label for="VehicleType"> Select Vehicle Type</label>
+        <select id="vehicleType">
+            <option value="car">Cars</option>
+            <option value="motos">Motocycles</option>
+            <option value="caminhoes">Trucks</option>
+        </select>
+    </div>
+    <div>
+        <label for="brands">Select Brand:</label>
+        <select id="brands"></select>
+    </div>
+    <div>
+        <label for="models">Select Model:</label>
+        <select id="models"></select>
+    </div>
+    <div>
+        <label for="years">Select Year:</label>
+        <select id="years"></select>
+    </div>
+    <div>
+</div>
 
-        </div>
-    
-            <div>
-                <label for="brands">Select Brand:</label>
-                <select id="brands"></select>
-            </div>
-            <div>
-                <label for="models">Select Model:</label>
-                <select id="models"></select>
-            </div>
-            <div>
-                <label for="years">Select Year:</label>
-                <select id="years"></select>
-            </div>
-            <div>
-        </div>
+
+<button onclick=" fetchVehicleInfo()">Get vehicle information</button>
+<div id="VehicleInfo"></div>
+ 
+<script src="script.js"></script>
 </body>
 </html>
