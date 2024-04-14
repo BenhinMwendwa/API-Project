@@ -185,12 +185,4 @@ document.getElementById('models').addEventListener('change', () => {
     loadYears(); // Load years when model selection changes
 });
 
-// Event listener for button click to fetch vehicle information
-document.querySelector('button').addEventListener('click', () => {
-    fetchVehicleInfo(); // Fetch and display vehicle information on button click
-});
-document.getElementsByTagName('VehicleInfo').addEventListener('change', () => {
-    fetchVehicleInfo() // Load years when model selection changes
-});
-
-
+ 
