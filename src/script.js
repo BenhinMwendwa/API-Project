@@ -47,4 +47,7 @@ function fetchVehicleInfo() { // function to fetch and display vehicle  informat
                 alert('Failed to fetch vehicle information. Please try again.');
             });
     }
+    //Function to initiate a dropdown element with options
+function initiateDropdown(selectElement, options) {
+    selectElement.innerHTML = ''; //clear existing options
     
